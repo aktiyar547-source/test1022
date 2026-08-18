@@ -212,7 +212,7 @@ class InventoryRepositoryImpl @Inject constructor(
             },
         )
 
-        val body = json.encodeToString(payload).toRequestBody(JSON_MEDIA_TYPE)
+        val body = json.encodeToString<SweepPayload>(payload).toRequestBody(JSON_MEDIA_TYPE)
         val response = runCatching { api.uploadSweep(body) }.getOrNull()
         val ok = response?.isSuccessful == true
         if (ok) {
